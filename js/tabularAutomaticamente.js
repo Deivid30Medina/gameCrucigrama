@@ -37,9 +37,6 @@ AllInputs.forEach((input, index) => {
     input.addEventListener('click', () => {
         borrarContenido(input);
     });
-    input.addEventListener('focus', () => {
-        limpiarCasilla(input);
-    });
 });
 
 calcularLongitudForm();
