@@ -1,4 +1,45 @@
 
 body{
     background-color: rgb(245, 208, 60);
+    width: 100%;
+}
+
+.classCointainerPrincipal{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.classPreguntas{
+    width: 40%;
+}
+
+.classInputs{
+    width: 60%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.classForm{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.classText{
+    width: 15px;
+    text-align: center;
+    height: 15px;
+}
+
+.columna1{
+    margin-top: 20px; /*Se debe bajar de 20, para que quede debajo de un cuadro*/
+}
+
+.classText:focus{
+    background-color: aquamarine;
 }
