@@ -15,6 +15,9 @@ function handleInput(currentInput, nextInputIndex) {
     }
 
     if (inputValue.length === 1) {
+        // Convertir a mayúsculas antes de colocar la letra en el label
+        convertirAMayuscula(currentInput);
+        
         if (nextInputIndex < longitudMaxima) {
             AllInputs[nextInputIndex].focus();
         }
@@ -29,6 +32,10 @@ function limpiarCasilla(contenido) {
     if (contenido.value.length > 0) {
         contenido.value = ''; // Borrar el contenido solo si hay texto
     }
+}
+
+function convertirAMayuscula(input) {
+    input.value = input.value.toUpperCase(); // Convierte a mayúsculas
 }
 
 // Asigna las funciones a los eventos de los inputs
