@@ -36,8 +36,8 @@ body{
     height: 15px;
 }
 
-.columna1{
-    margin-top: 20px; /*Se debe bajar de 20, para que quede debajo de un cuadro*/
+.columnBajar{
+    margin-top: 63px; /*Se debe bajar de 21, para que quede debajo de un cuadro*/
 }
 
 .classText:focus{
