@@ -1,6 +1,6 @@
 // Objeto que almacenará la información de cada formulario
 const formularios = {};
-const palabrasValidar = ["HOLA","HOLAAAAAA2","HOLA3","HOLA4","HOLA5","HOLA6","HOLA7"];
+const palabrasValidar = ["ACCO","COMUICCION","DIVUGR","CORR","UTOIZAR","GESTONAR","EISRA"];
 
 // Función para manejar el campo de texto
 function manejarCampoTexto(indiceFormulario, indiceCampo) {
@@ -13,21 +13,28 @@ function manejarCampoTexto(indiceFormulario, indiceCampo) {
 
 function validarPalabrFinal(arrayLetras, indice){
     let valores = Object.values(arrayLetras);
-    
     let valoresLimpios = valores.filter(valor => valor != "");
+
     let palabraFormada = valoresLimpios.join("");
+
+    let nombresPosiciones = Object.getOwnPropertyNames(arrayLetras);
+    
     if(palabraFormada.length === palabrasValidar[indice].length){
-        let nombresPosiciones = Object.getOwnPropertyNames(arrayLetras);
-        console.log(palabraFormada);
-        console.log(palabrasValidar[indice]);
-        console.log(nombresPosiciones);
+        console.log("Entro true");
         if(palabraFormada === palabrasValidar[indice]){
+            quitarClase(nombresPosiciones,indice,"classDespintar");
             quitarClase(nombresPosiciones,indice,"classIncorrecta");
             pintarPalabra(nombresPosiciones,indice,"classCorrecta");
         }else{
+            quitarClase(nombresPosiciones,indice,"classDespintar");
             quitarClase(nombresPosiciones,indice,"classCorrecta");
             pintarPalabra(nombresPosiciones,indice,"classIncorrecta");
         }
+    }else{
+        console.log("Entro false");
+        quitarClase(nombresPosiciones,indice,"classIncorrecta");
+        quitarClase(nombresPosiciones,indice,"classCorrecta");
+        pintarPalabra(nombresPosiciones,indice,"classDespintar");
     }
 }
 
@@ -48,7 +55,7 @@ function quitarClase(nombresPosiciones,indiceFormulario,classRemover){
 
 function validarTexto(){
     // Asigna las funciones a los eventos de los inputs de cada formulario
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 7; i++) {
         const camposTexto = document.querySelectorAll(`.classForm.columna${i+1} .classLetra`);
         formularios[i ] = {}; // Inicializa el objeto del formulario
         camposTexto.forEach((campo, index) => {

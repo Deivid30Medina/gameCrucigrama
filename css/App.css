@@ -38,6 +38,7 @@ body{
     width: 15px;
     text-align: center;
     height: 15px;
+    border: 2px solid #7676767c;
 }
 
 .classText2{
@@ -48,21 +49,27 @@ body{
 }
 
 .classIncorrecta{
-    background-color: rgb(255, 0, 0);
+    background-color: #FF9369;
 }
 
 .classCorrecta{
-    background-color: rgb(50, 240, 50);
+    background-color: #69D1FF;
+}
+
+.classDespintar{
+    background-color: white;
+    border: 2px solid #7676767c;
 }
 
 .classSalario{
     background-color: #c2e6ff;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .columnBajar{
     margin-top: 63px; /*Se debe bajar de 21, para que quede debajo de un cuadro*/
 }
+
 
 .classText:focus{
     background-color: aquamarine;
