@@ -40,10 +40,37 @@ body{
     height: 15px;
 }
 
+.classText2{
+    width: 16px;
+    text-align: center;
+    height: 15px;
+    pointer-events: none;
+}
+
+.classIncorrecta{
+    background-color: rgb(255, 0, 0);
+}
+
+.classCorrecta{
+    background-color: rgb(50, 240, 50);
+}
+
+.classSalario{
+    background-color: #c2e6ff;
+    border: 1px solid black;
+}
+
 .columnBajar{
     margin-top: 63px; /*Se debe bajar de 21, para que quede debajo de un cuadro*/
 }
 
 .classText:focus{
     background-color: aquamarine;
+}
+
+.classFormaRara{
+    background-color: antiquewhite;
+    /**border-radius: 10% 10% 50% 50% / 10% 10% 100% 100% ;
+    */border-radius: 10% 100% 100% 10% / 10% 50% 50% 10% ;
+
 }
