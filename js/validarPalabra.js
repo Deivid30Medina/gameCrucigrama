@@ -18,23 +18,18 @@ function validarPalabrFinal(arrayLetras, indice){
     let palabraFormada = valoresLimpios.join("");
 
     let nombresPosiciones = Object.getOwnPropertyNames(arrayLetras);
-    
+    quitarClase(nombresPosiciones,indice);
     if(palabraFormada.length === palabrasValidar[indice].length){
-        console.log("Entro true");
         if(palabraFormada === palabrasValidar[indice]){
-            quitarClase(nombresPosiciones,indice,"classDespintar");
-            quitarClase(nombresPosiciones,indice,"classIncorrecta");
-            pintarPalabra(nombresPosiciones,indice,"classCorrecta");
+            pintarPalabra(nombresPosiciones,indice, "classCorrecta");
+            validarLetraEspecificas(indice,"classCorrecta");
         }else{
-            quitarClase(nombresPosiciones,indice,"classDespintar");
-            quitarClase(nombresPosiciones,indice,"classCorrecta");
             pintarPalabra(nombresPosiciones,indice,"classIncorrecta");
+            validarLetraEspecificas(indice,"classDespintar");
         }
     }else{
-        console.log("Entro false");
-        quitarClase(nombresPosiciones,indice,"classIncorrecta");
-        quitarClase(nombresPosiciones,indice,"classCorrecta");
         pintarPalabra(nombresPosiciones,indice,"classDespintar");
+        validarLetraEspecificas(indice,"classDespintar");
     }
 }
 
@@ -45,13 +40,23 @@ function pintarPalabra(nombresPosiciones,indiceFormulario,claseAgregar){
     })
 }
 
-function quitarClase(nombresPosiciones,indiceFormulario,classRemover){
-    nombresPosiciones.forEach(function(posicion){
-        let elementoInput = document.querySelector(`.classForm.columna${indiceFormulario + 1} .classLetra:nth-child(${posicion})`);
-        elementoInput.classList.remove(classRemover);
-    })
+function quitarClase(nombresPosiciones,indiceFormulario){
+    Object.entries(nombresPosiciones).forEach(([key, value]) => {
+        let elementoInput = document.querySelector(`.classForm.columna${indiceFormulario + 1} .classLetra:nth-child(${value})`);
+        elementoInput.classList.remove("classRemover");
+        elementoInput.classList.remove("classCorrecta");
+        elementoInput.classList.remove("classDespintar");
+    });
 }
 
+function validarLetraEspecificas(indiceFormulario,claseAgregar){
+    let posiciones = [4,5,7,3,1,0,2];
+    let elementoInput = document.querySelector(`.classForm.columna${indiceFormulario + 1} .classLetra:nth-child(${posiciones[indiceFormulario]})`);
+    elementoInput.classList.remove("classRemover");
+    elementoInput.classList.remove("classCorrecta");
+    elementoInput.classList.remove("classDespintar");   
+    elementoInput.classList.add(claseAgregar);
+}
 
 function validarTexto(){
     // Asigna las funciones a los eventos de los inputs de cada formulario
