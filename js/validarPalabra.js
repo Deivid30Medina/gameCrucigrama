@@ -1,14 +1,13 @@
 // Objeto que almacenará la información de cada formulario
 const formularios = {};
 const palabrasValidar = ["ACCO","COMUICCION","DIVUGR","CORR","UTOIZAR","GESTONAR","EISRA"];
+let ganaste = 7;
 
 // Función para manejar el campo de texto
 function manejarCampoTexto(indiceFormulario, indiceCampo) {
     // Obtiene el formulario específico
     const formulario = formularios[indiceFormulario] || {};
     // Actualiza el valor del campo en el objeto del formulario
-    console.log(indiceFormulario + 1);
-    console.log(indiceCampo);
     formulario[indiceCampo] = document.querySelector(`.classForm.columna${indiceFormulario + 1} .classLetra:nth-child(${indiceCampo})`).value;
     validarPalabrFinal(formulario,indiceFormulario);
 }
@@ -25,13 +24,40 @@ function validarPalabrFinal(arrayLetras, indice){
         if(palabraFormada === palabrasValidar[indice]){
             pintarPalabra(nombresPosiciones,indice, "classCorrecta");
             validarLetraEspecificas(indice,"classCorrecta");
+            validarCondicionGanar("restar");
         }else{
             pintarPalabra(nombresPosiciones,indice,"classIncorrecta");
             validarLetraEspecificas(indice,"classDespintar");
+            validarCondicionGanar("sumar");
         }
     }else{
         pintarPalabra(nombresPosiciones,indice,"classDespintar");
         validarLetraEspecificas(indice,"classDespintar");
+        validarCondicionGanar("sumar");
+    }
+}
+
+function validarCondicionGanar(condicionValidar){
+    if(condicionValidar == "restar"){
+        restarGanaste();
+        if(ganaste === 0){
+            alert("Ganaste, felicidades")
+        }
+    }else{
+        sumarGanaste();
+    }
+    
+}
+
+function sumarGanaste(){
+    if(ganaste < 7){
+        ganaste += 1;
+    }
+}
+
+function restarGanaste(){
+    if(ganaste > 1){
+        ganaste -= 1;
     }
 }
 
@@ -53,11 +79,13 @@ function quitarClase(nombresPosiciones,indiceFormulario){
 
 function validarLetraEspecificas(indiceFormulario,claseAgregar){
     let posiciones = [5,6,8,4,2,0,3];
-    let elementoInput = document.querySelector(`.classForm.columna${indiceFormulario + 1} .classLetra:nth-child(${posiciones[indiceFormulario]})`);
-    elementoInput.classList.remove("classRemover");
-    elementoInput.classList.remove("classCorrecta");
-    elementoInput.classList.remove("classDespintar");   
-    elementoInput.classList.add(claseAgregar);
+    if(indiceFormulario != 5){
+        let elementoInput = document.querySelector(`.classForm.columna${indiceFormulario + 1} .classLetra:nth-child(${posiciones[indiceFormulario]})`);
+        elementoInput.classList.remove("classRemover");
+        elementoInput.classList.remove("classCorrecta");
+        elementoInput.classList.remove("classDespintar");   
+        elementoInput.classList.add(claseAgregar);
+    }
 }
 
 function validarTexto(){
@@ -65,9 +93,7 @@ function validarTexto(){
     for (let i = 0; i < 7; i++) {
         const camposTexto = document.querySelectorAll(`.classForm.columna${i+1} .classLetra`);
         formularios[i ] = {}; // Inicializa el objeto del formulario
-        console.log(camposTexto);
         camposTexto.forEach((campo, index) => {
-            console.log(index);
             campo.addEventListener('input', () => manejarCampoTexto(i , index + 1));
             campo.addEventListener('click', () => manejarCampoTexto(i , index + 1));
         });
