@@ -52,7 +52,7 @@ function quitarClase(nombresPosiciones,indiceFormulario){
 }
 
 function validarLetraEspecificas(indiceFormulario,claseAgregar){
-    let posiciones = [5,6,7,4,2,0,3];
+    let posiciones = [5,6,8,4,2,0,3];
     let elementoInput = document.querySelector(`.classForm.columna${indiceFormulario + 1} .classLetra:nth-child(${posiciones[indiceFormulario]})`);
     elementoInput.classList.remove("classRemover");
     elementoInput.classList.remove("classCorrecta");
