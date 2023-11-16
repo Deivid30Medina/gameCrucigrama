@@ -7,6 +7,8 @@ function manejarCampoTexto(indiceFormulario, indiceCampo) {
     // Obtiene el formulario específico
     const formulario = formularios[indiceFormulario] || {};
     // Actualiza el valor del campo en el objeto del formulario
+    console.log(indiceFormulario + 1);
+    console.log(indiceCampo);
     formulario[indiceCampo] = document.querySelector(`.classForm.columna${indiceFormulario + 1} .classLetra:nth-child(${indiceCampo})`).value;
     validarPalabrFinal(formulario,indiceFormulario);
 }
@@ -50,7 +52,7 @@ function quitarClase(nombresPosiciones,indiceFormulario){
 }
 
 function validarLetraEspecificas(indiceFormulario,claseAgregar){
-    let posiciones = [4,5,7,3,1,0,2];
+    let posiciones = [5,6,7,4,2,0,3];
     let elementoInput = document.querySelector(`.classForm.columna${indiceFormulario + 1} .classLetra:nth-child(${posiciones[indiceFormulario]})`);
     elementoInput.classList.remove("classRemover");
     elementoInput.classList.remove("classCorrecta");
@@ -63,7 +65,9 @@ function validarTexto(){
     for (let i = 0; i < 7; i++) {
         const camposTexto = document.querySelectorAll(`.classForm.columna${i+1} .classLetra`);
         formularios[i ] = {}; // Inicializa el objeto del formulario
+        console.log(camposTexto);
         camposTexto.forEach((campo, index) => {
+            console.log(index);
             campo.addEventListener('input', () => manejarCampoTexto(i , index + 1));
             campo.addEventListener('click', () => manejarCampoTexto(i , index + 1));
         });

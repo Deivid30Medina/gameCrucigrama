@@ -29,7 +29,7 @@ body{
 
 .classForm{
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
 }
@@ -45,6 +45,10 @@ body{
     width: 16px;
     text-align: center;
     height: 15px;
+    pointer-events: none;
+}
+
+.classNumero{
     pointer-events: none;
 }
 
