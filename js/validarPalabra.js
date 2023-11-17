@@ -46,7 +46,6 @@ function validarCondicionGanar(condicionValidar, indice){
     }else{
         sumarGanaste(indice);
     }
-    console.log(ganaste);
 }
 
 function sumarGanaste(indice){
