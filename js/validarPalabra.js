@@ -1,7 +1,7 @@
 // Objeto que almacenará la información de cada formulario
 const formularios = {};
 const palabrasValidar = ["ACCO","COMUICCION","DIVUGR","CORR","UTOIZAR","GESTONAR","EISRA"];
-let ganaste = 7;
+let ganaste = [false,false,false,false,false,false,false];
 
 // Función para manejar el campo de texto
 function manejarCampoTexto(indiceFormulario, indiceCampo) {
@@ -24,41 +24,37 @@ function validarPalabrFinal(arrayLetras, indice){
         if(palabraFormada === palabrasValidar[indice]){
             pintarPalabra(nombresPosiciones,indice, "classCorrecta");
             validarLetraEspecificas(indice,"classCorrecta");
-            validarCondicionGanar("restar");
+            validarCondicionGanar("restar", indice);
         }else{
             pintarPalabra(nombresPosiciones,indice,"classIncorrecta");
             validarLetraEspecificas(indice,"classDespintar");
-            validarCondicionGanar("sumar");
+            validarCondicionGanar("sumar", indice);
         }
     }else{
         pintarPalabra(nombresPosiciones,indice,"classDespintar");
         validarLetraEspecificas(indice,"classDespintar");
-        validarCondicionGanar("sumar");
+        validarCondicionGanar("sumar", indice);
     }
 }
 
-function validarCondicionGanar(condicionValidar){
+function validarCondicionGanar(condicionValidar, indice){
     if(condicionValidar == "restar"){
-        restarGanaste();
-        if(ganaste === 0){
+        restarGanaste(indice);
+        if(!ganaste.includes(false)){
             alert("Ganaste, felicidades")
         }
     }else{
-        sumarGanaste();
+        sumarGanaste(indice);
     }
-    
+    console.log(ganaste);
 }
 
-function sumarGanaste(){
-    if(ganaste < 7){
-        ganaste += 1;
-    }
+function sumarGanaste(indice){
+    ganaste[indice] = false;
 }
 
-function restarGanaste(){
-    if(ganaste > 1){
-        ganaste -= 1;
-    }
+function restarGanaste(indice){
+    ganaste[indice] = true;
 }
 
 function pintarPalabra(nombresPosiciones,indiceFormulario,claseAgregar){
